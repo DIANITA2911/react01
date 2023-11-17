@@ -1,12 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from "react-router-dom";
+import "./App.css";
+import BarraRutasPublic from "./ruteo/BarraRutasPublic";
+import BarraRutasProtected from "./ruteo/BarraRutasProtected";
+import { useAuth } from "./ruteo/AuthContext";
+import "bootswatch/dist/quartz/bootstrap.min.css";
 
-////style={{background:"violet",width:"350px",padding:"10px"}}
 function App() {
+  const { user } = useAuth();
   return (
-    <div style={{background:"violet",width:"350px",padding:"10px"}}>
-     <hi>App.js</hi> 
-     
+    <div className="">
+      <Router>{user ? <BarraRutasProtected /> : <BarraRutasPublic />}</Router>
     </div>
   );
 }
